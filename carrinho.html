@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho - DarkWhite</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="carrinho.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo-area">
+      <img src="https://i.postimg.cc/xThp7nXg/imagem-2025-11-13-164307726.png" alt="DarkWhite Logo">
+      <h1><a href="index.html">DarkWhite</a></h1>
+    </div>
+
+    <div class="hamburger" id="hamburger">&#9776;</div>
+
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html#produtos">Produtos</a>
+      <a href="index.html#contato">Contato</a>
+      <a href="index.html#redes">Redes Sociais</a>
+      <a href="carrinho.html">🛒 Ver Carrinho (<span id="quantidade-carrinho">0</span>)</a>
+
+      <!-- Área de autenticação -->
+      <div id="auth-area" style="margin-left:12px; display:inline-block;"></div>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="carrinho">
+    <h2>🛒 Seu Carrinho</h2>
+    <div id="itens-carrinho"></div>
+
+    <div class="cupons">
+      <input type="text" id="cupom" placeholder="Digite seu cupom">
+      <button id="aplicar-cupom">Aplicar</button>
+    </div>
+
+    <div class="resumo">
+      <p id="subtotal">Subtotal: R$ 0,00</p>
+      <p id="desconto"></p>
+      <h3 id="total">Total: R$ 0,00</h3>
+    </div>
+
+    <button class="finalizar" id="finalizar">Finalizar Compra no WhatsApp</button>
+  </main>
+
+  <div id="mensagem-toast" class="mensagem-toast"></div>
+
+  <!-- Autenticação frontend -->
+  <script src="frontend-auth.js"></script>
+  <script>dwAuth.mountAuthHeader('#auth-area');</script>
+
+  <!-- Inclui o script unificado -->
+  <script src="scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adidas Campus - DarkWhite</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="produtos.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo-area">
+      <img src="https://i.postimg.cc/xThp7nXg/imagem-2025-11-13-164307726.png" alt="DarkWhite Logo">
+      <h1><a href="index.html">DarkWhite</a></h1>
+    </div>
+
+    <!-- Botão hambúrguer -->
+    <div class="hamburger" id="hamburger">&#9776;</div>
+
+    <!-- Links da navbar (observe ../ para voltar ao root) -->
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html#produtos">Produtos</a>
+      <a href="index.html#contato">Contato</a>
+      <a href="index.html#redes">Redes Sociais</a>
+      <a href="carrinho.html">🛒 Ver Carrinho (<span id="quantidade-carrinho">0</span>)</a>
+
+      <!-- Área de autenticação -->
+      <div id="auth-area" style="margin-left:12px; display:inline-block;"></div>
+    </nav>
+  </header>
+
+
+
+  <main class="produto-pagina">
+    <div class="card-fundo">
+      <div class="card-galeria">
+
+        <button class="voltar"
+          onclick="if(history.length>1){ history.back(); } else { window.location.href='../index.html'; }"
+          aria-label="Voltar à página anterior">← Voltar</button>
+
+        <div class="card-imagem">
+          <img id="imagem-principal" src="https://i.postimg.cc/XJ1btLJy/imagem-2025-11-17-194330431.png"
+            alt="Adidas Campus">
+        </div>
+
+        <!-- Miniaturas -->
+        <div class="miniaturas">
+          <img src="https://i.postimg.cc/XJ1btLJy/imagem-2025-11-17-194330431.png" alt="mini1"
+            onclick="trocarImagem(this.src)">
+          <img src="https://i.postimg.cc/Dyr2wqpP/imagem-2025-11-17-194749740.png" alt="mini2"
+            onclick="trocarImagem(this.src)">
+          <img src="https://i.postimg.cc/MHRzRRWr/imagem-2025-11-17-194718097.png" alt="mini3"
+            onclick="trocarImagem(this.src)">
+        </div>
+
+        <!-- Informações -->
+        <h1>Adidas Campus</h1>
+        <p>Cor: Preto e Branco</p>
+        <p>Tamanhos: 34 - 43</p>
+        <span class="preco">R$: 150,00</span>
+
+        <!-- Botão -->
+        <button class="comprar"
+          onclick="adicionarAoCarrinho('Adidas Campus',150.00,'https://i.postimg.cc/XJ1btLJy/imagem-2025-11-17-194330431.png')">
+          🛒 Adicionar ao Carrinho
+        </button>
+
+      </div> <!-- .card-galeria -->
+    </div> <!-- .card-fundo -->
+  </main>
+
+
+
+  <!-- Footer / redes sociais (opcional) -->
+  <section class="social-links" id="redes">
+    <h3>Redes Sociais</h3>
+    <div class="social-buttons">
+      <a href="https://wa.me/5547996626904" target="_blank" class="whatsapp-btn">💬 WhatsApp</a>
+      <a href="https://instagram.com/paponeskate" target="_blank" class="instagram-btn">📸 Instagram</a>
+    </div>
+  </section>
+
+  <div id="mensagem-toast" class="mensagem-toast"></div>
+
+  <!-- Autenticação frontend -->
+  <script src="frontend-auth.js"></script>
+  <script>dwAuth.mountAuthHeader('#auth-area');</script>
+
+  <script src="scripts.js"></script>
+</body>
+
+</html>

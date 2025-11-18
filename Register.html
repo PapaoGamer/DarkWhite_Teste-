@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta - DarkWhite</title>
+    <link rel="stylesheet" href="login.css"> <!-- reutiliza o mesmo CSS -->
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Criar Conta</h2>
+        <p class="subtitle">Preencha para continuar</p>
+
+        <form id="registerForm" class="login-form">
+            <input type="text" id="name" placeholder="Seu nome" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <input type="password" id="confirm" placeholder="Confirmar senha" required>
+
+            <button type="submit" class="login-btn">Criar conta</button>
+        </form>
+
+        <p id="msg" class="msg"></p>
+
+        <p style="margin-top: 15px; font-size: 14px; color:#aaa;">
+            Já tem conta? <a href="login.html" style="color:#4af57a;">Entrar</a>
+        </p>
+    </div>
+
+    <script src="frontend-auth.js"></script>
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const confirm = document.getElementById("confirm").value.trim();
+            const msg = document.getElementById("msg");
+
+            msg.innerHTML = "Verificando...";
+
+            if (password !== confirm) {
+                msg.innerHTML = "As senhas não coincidem!";
+                msg.style.color = "#ff6464";
+                return;
+            }
+
+            // ---- Registrar usando seu backend (Node.js) ----
+            try {
+                const response = await fetch("http://localhost:3000/register", { // AJUSTAR AQUI SE NECESSÁRIO
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    msg.innerHTML = "Conta criada! Redirecionando...";
+                    msg.style.color = "#4af57a";
+
+                    setTimeout(() => {
+                        window.location.href = "login.html";
+                    }, 1000);
+                } else {
+                    msg.innerHTML = data.error || "Erro ao criar conta.";
+                    msg.style.color = "#ff6464";
+                }
+
+            } catch (err) {
+                msg.innerHTML = "Erro ao conectar com o servidor.";
+                msg.style.color = "#ff6464";
+            }
+        });
+    </script>
+
+</body>
+</html>
