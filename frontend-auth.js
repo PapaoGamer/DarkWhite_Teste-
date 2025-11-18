@@ -1,7 +1,7 @@
 // frontend-auth.js
 // Integração frontend <-> backend (Node/Express) para autenticação.
 // Ajuste API_BASE se seu backend estiver em outra porta/host.
-const API_URL = "https://backend-dark-white.onrender.com";
+const API_URL = "https://backend-dark-shop.onrender.com";
 const TOKEN_KEY = 'dw_token';
 const USER_KEY = 'dw_user';
 
