@@ -13,10 +13,10 @@
         <p class="subtitle">Preencha para continuar</p>
 
         <form id="registerForm" class="login-form">
-            <input type="text" id="name" placeholder="Seu nome" required>
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Senha" required>
-            <input type="password" id="confirm" placeholder="Confirmar senha" required>
+            <input type="text" id="name" name="name" placeholder="Seu nome" autocomplete="name" required>
+            <input type="email" id="email" name="email" placeholder="Email" autocomplete="email" required>
+            <input type="password" id="password" name="password" placeholder="Senha" autocomplete="new-password" required>
+            <input type="password" id="confirm" name="confirm" placeholder="Confirmar senha" autocomplete="new-password" required>
 
             <button type="submit" class="login-btn">Criar conta</button>
         </form>
@@ -39,22 +39,22 @@
             const confirm = document.getElementById("confirm").value.trim();
             const msg = document.getElementById("msg");
 
-            msg.innerHTML = "Verificando...";
-
             if (password !== confirm) {
                 msg.innerHTML = "As senhas não coincidem!";
                 msg.style.color = "#ff6464";
                 return;
             }
 
-            // ---- Registrar usando seu backend (Node.js) ----
+            msg.innerHTML = "Criando conta… aguarde";
+            msg.style.color = "#aaa";
+
             try {
-                const response = await fetch("https://backend-dark-shop.onrender.com", { // AJUSTAR AQUI SE NECESSÁRIO
+                const response = await fetch("https://backend-dark-shop.onrender.com/api/auth/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({ name, email, password })
+                    body: JSON.stringify({ nome: name, email, senha: password })
                 });
 
                 const data = await response.json();
@@ -74,6 +74,7 @@
             } catch (err) {
                 msg.innerHTML = "Erro ao conectar com o servidor.";
                 msg.style.color = "#ff6464";
+                console.error(err);
             }
         });
     </script>
