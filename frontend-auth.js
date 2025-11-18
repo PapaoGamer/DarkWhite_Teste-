@@ -83,8 +83,8 @@ async function mountAuthHeader(containerSelector = '#auth-area') {
     });
   } else {
     container.innerHTML = `
-      <a href="Login.html" style="color:white;margin-right:8px">Entrar</a>
-      <a href="Register.html" style="color:white">Cadastrar</a>
+      <a href="login.html" style="color:white;margin-right:8px">Entrar</a>
+      <a href="register.html" style="color:white">Cadastrar</a>
     `;
   }
 }

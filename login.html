@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar - DarkWhite</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Bem-vindo</h2>
+        <p class="subtitle">Entre para continuar</p>
+
+        <form id="loginForm" class="login-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Senha" required>
+
+            <button type="submit" class="login-btn">Entrar</button>
+        </form>
+
+        <p id="msg" class="msg"></p>
+
+        <!-- 🔥 Aqui está o link para criar conta -->
+        <p style="margin-top: 15px; font-size: 14px; color:#aaa;">
+            Não tem conta? <a href="register.html" style="color:#4af57a;">Criar conta</a>
+        </p>
+    </div>
+
+    
+    <script src="frontend-auth.js"></script>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const msg = document.getElementById("msg");
+
+            msg.innerHTML = "Verificando...";
+
+            // LOGIN via seu frontend-auth.js
+            const result = dwAuth.login(email, password);
+
+            if (result.ok) {
+                msg.innerHTML = "Login bem-sucedido! Redirecionando...";
+                msg.style.color = "#4af57a";
+
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1000);
+            } else {
+                msg.innerHTML = result.message;
+                msg.style.color = "#ff6464";
+            }
+        });
+    </script>
+
+</body>
+</html>
